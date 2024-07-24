@@ -1,38 +1,58 @@
 console.log("Hello World");
 
 // Declaracão de variáveis globais
-let humanChoice = Number;
-let computerChoice = Number;
-let humanScore = 0;
+let computerNumber = Number;
+let computerChoice;
+let humanChoice;
 let computerScore = 0;
+let humanScore = 0;
+
 
 function getComputerChoice(){
-    computerChoice = Math.floor(Math.random() * 3) + 1;
+    computerNumber = Math.floor(Math.random() * 3) + 1;
+    switch (computerNumber){
+        case 1:
+            computerChoice = "rock";
+            break;
+        case 2:
+            computerChoice = "paper";
+            break;
+        case 3:
+            computerChoice = "scissors";
+            break;
+    }
     return computerChoice;
 }
 
 function getHumanChoice(){
-    humanChoice = Number(prompt("1: Pedra \n2: Papel \n3: Tesoura"));
+    humanChoice = prompt("Rock, paper or scissors?").toLowerCase;
     console.log(humanChoice);
     return humanChoice;
 }
 
-function score(){
+function playRound(humanChoice, computerChoice){
     switch (humanChoice){
         case 1:
             switch (computerChoice){
                 case 1:
                     // EMPATE
+                    console.log(computerScore);
+                    console.log(humanScore);
                     break;
                 case 2:
                     // DERROTA
                     computerScore++;
+                    console.log(computerScore);
+                    console.log(humanScore);
                     break;
                 case 3:
                     // VITORIA
                     humanScore++;
+                    console.log(computerScore);
+                    console.log(humanScore);
                     break;
             }
+        break;
         case 2:
             switch (computerChoice){
                 case 1:
@@ -47,24 +67,27 @@ function score(){
                     computerScore++;
                     break;
             }
-            case 3:
-                switch (computerChoice){
-                    case 1:
-                        // DERROTA
-                        computerScore++;
-                        break;
-                    case 2:
-                        // VITORIA
-                        humanScore++;
-                        break;
-                    case 3:
-                        // EMPATE
-                        break;
-                }    
-    } 
+        break;
+        case 3:
+            switch (computerChoice){
+                case 1:
+                    // DERROTA
+                    computerScore++;
+                    break;
+                case 2:
+                    // VITORIA
+                    humanScore++;
+                    break;
+                case 3:
+                    // EMPATE
+                    break;
+            }    
+    }
 }
 
+getComputerChoice()
 getHumanChoice();
+round();
 
 // 1 = Pedra 
 // 2 = Papel
