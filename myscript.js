@@ -33,17 +33,17 @@ function getHumanChoice(){
 }
 
 function draw(humanChoice){
-    console.log(`Oops, it's a draw! Both selected ${humanChoice}`);
+    console.log(`Draw! Both chose ${humanChoice}\nPlayer ${humanScore} x ${computerScore} Computer`);
 }
 
 function victory(humanChoice, computerChoice){
     humanScore++;
-    console.log(`Victory! ${humanChoice} beats ${computerChoice}`)
+    console.log(`Victory! ${humanChoice} beats ${computerChoice}\nPlayer ${humanScore} x ${computerScore} Computer`);
 }
 
 function defeat(humanChoice, computerChoice){
     computerScore++;
-    console.log(`Defeat! ${computerChoice} beats ${humanChoice}`)
+    console.log(`Defeat! ${computerChoice} beats ${humanChoice}\nPlayer ${humanScore} x ${computerScore} Computer`);
 }
 
 function playRound(humanChoice, computerChoice){
@@ -103,15 +103,13 @@ function playGame(){
         getComputerChoice();
         getHumanChoice();
         playRound(humanChoice, computerChoice);
-        console.log(`Player - ${humanScore} x ${computerScore} - Computer`)
     }
-    console.log(`Game is over! \nPlayer - ${humanScore} x ${computerScore} - Computer\n`);
     if (humanScore > computerScore){
-        console.log("Congrats! You won the game!");
+        console.log(`Game is over! \nPlayer ${humanScore} x ${computerScore} Computer\nYou won the game!`);
     } else if (humanScore < computerScore){
-        console.log("That's too bad! You lost the game!");
+        console.log(`Game is over! \nPlayer ${humanScore} x ${computerScore} Computer\nYou lost the game!`);
     } else {
-        console.log("It's a draw!")
+        console.log(`Game is over! \nPlayer ${humanScore} x ${computerScore} Computer\nIt's a draw!`)
     }
 }
 
