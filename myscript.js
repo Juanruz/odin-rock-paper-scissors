@@ -1,9 +1,8 @@
 console.log("Hello World");
 
 // Declaracão de variáveis globais
-let computerNumber = Number;
-let computerChoice;
-let humanChoice;
+let computerChoice = String;
+let humanChoice = String;
 let computerScore = 0;
 let humanScore = 0;
 
@@ -13,7 +12,7 @@ function upperFirst(str){
 }
 
 function getComputerChoice(){
-    computerNumber = Math.floor(Math.random() * 3) + 1;
+    let computerNumber = Math.floor(Math.random() * 3) + 1;
     switch (computerNumber){
         case 1:
             computerChoice = "Rock";
@@ -30,7 +29,6 @@ function getComputerChoice(){
 
 function getHumanChoice(){
     humanChoice = upperFirst(prompt("Rock, paper or scissors?").toLowerCase());
-    console.log(humanChoice);
     return humanChoice;
 }
 
@@ -50,65 +48,75 @@ function defeat(humanChoice, computerChoice){
 
 function playRound(humanChoice, computerChoice){
     switch (humanChoice){
-        case 1:
+        case "Rock":
             switch (computerChoice){
-                case 1:
+                case "Rock":
                     // EMPATE
-                    console.log(computerScore);
-                    console.log(humanScore);
-                    console.log(humanScore);
+                    draw(humanChoice);
                     break;
-                case 2:
+                case "Paper":
                     // DERROTA
-                    computerScore++;
-                    console.log(computerScore);
-                    console.log(humanScore);
-                    console.log(humanScore);
+                    defeat(humanChoice, computerChoice);
                     break;
-                case 3:
+                case "Scissors":
                     // VITORIA
-                    humanScore++;
-                    console.log(computerScore);
-                    console.log(humanScore);
-                    console.log(humanScore);
+                    victory(humanChoice, computerChoice);
                     break;
             }
         break;
-        case 2:
+        case "Paper":
             switch (computerChoice){
-                case 1:
+                case "Rock":
                     // VITORIA
-                    humanScore++;
+                    victory(humanChoice, computerChoice);
                     break;
-                case 2:
+                case "Paper":
                     // EMPATE
+                    draw(humanChoice);
                     break;
-                case 3:
+                case "Scissors":
                     // DERROTA
-                    computerScore++;
+                    defeat(humanChoice, computerChoice);
                     break;
             }
         break;
-        case 3:
+        case "Scissors":
             switch (computerChoice){
-                case 1:
+                case "Rock":
                     // DERROTA
-                    computerScore++;
+                    defeat(humanChoice, computerChoice);
                     break;
-                case 2:
+                case "Paper":
                     // VITORIA
-                    humanScore++;
+                    victory(humanChoice, computerChoice);
                     break;
-                case 3:
+                case "Scissors":
                     // EMPATE
+                    draw(humanChoice);
                     break;
             }    
     }
 }
 
-getComputerChoice()
-getHumanChoice();
-playRound();
+function playGame(){
+    for (let i = 1;  i < 6; i++){
+        getComputerChoice();
+        getHumanChoice();
+        playRound(humanChoice, computerChoice);
+        console.log(`Player - ${humanScore} x ${computerScore} - Computer`)
+    }
+    console.log(`Game is over! \nPlayer - ${humanScore} x ${computerScore} - Computer\n`);
+    if (humanScore > computerScore){
+        console.log("Congrats! You won the game!");
+    } else if (humanScore < computerScore){
+        console.log("That's too bad! You lost the game!");
+    } else {
+        console.log("It's a draw!")
+    }
+}
+
+playGame();
+
 
 // 1 = Pedra 
 // 2 = Papel
