@@ -7,28 +7,41 @@ let humanChoice;
 let computerScore = 0;
 let humanScore = 0;
 
+function upperFirst(str){
+    let modStr = str[0].toUpperCase() + str.slice(1);
+    return modStr;
+}
 
 function getComputerChoice(){
     computerNumber = Math.floor(Math.random() * 3) + 1;
     switch (computerNumber){
         case 1:
-            computerChoice = "rock";
+            computerChoice = "Rock";
             break;
         case 2:
-            computerChoice = "paper";
+            computerChoice = "Paper";
             break;
         case 3:
-            computerChoice = "scissors";
+            computerChoice = "Scissors";
             break;
     }
     return computerChoice;
 }
 
 function getHumanChoice(){
-    humanChoice = prompt("Rock, paper or scissors?").toLowerCase;
+    humanChoice = upperFirst(prompt("Rock, paper or scissors?").toLowerCase());
     console.log(humanChoice);
     return humanChoice;
 }
+
+// function draw(humanChoice){
+//     console.log(`Oops, it's a draw! Both selected ${humanChoice}`);
+// }
+
+// function win(humanChoice, computerChoice){
+//     humanScore++;
+//     console.log(`You win! ${humanChoice} beats `)
+// }
 
 function playRound(humanChoice, computerChoice){
     switch (humanChoice){
@@ -38,17 +51,20 @@ function playRound(humanChoice, computerChoice){
                     // EMPATE
                     console.log(computerScore);
                     console.log(humanScore);
+                    console.log(humanScore);
                     break;
                 case 2:
                     // DERROTA
                     computerScore++;
                     console.log(computerScore);
                     console.log(humanScore);
+                    console.log(humanScore);
                     break;
                 case 3:
                     // VITORIA
                     humanScore++;
                     console.log(computerScore);
+                    console.log(humanScore);
                     console.log(humanScore);
                     break;
             }
@@ -87,7 +103,7 @@ function playRound(humanChoice, computerChoice){
 
 getComputerChoice()
 getHumanChoice();
-round();
+playRound();
 
 // 1 = Pedra 
 // 2 = Papel
