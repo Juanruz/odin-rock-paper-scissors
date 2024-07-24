@@ -34,14 +34,19 @@ function getHumanChoice(){
     return humanChoice;
 }
 
-// function draw(humanChoice){
-//     console.log(`Oops, it's a draw! Both selected ${humanChoice}`);
-// }
+function draw(humanChoice){
+    console.log(`Oops, it's a draw! Both selected ${humanChoice}`);
+}
 
-// function win(humanChoice, computerChoice){
-//     humanScore++;
-//     console.log(`You win! ${humanChoice} beats `)
-// }
+function victory(humanChoice, computerChoice){
+    humanScore++;
+    console.log(`Victory! ${humanChoice} beats ${computerChoice}`)
+}
+
+function defeat(humanChoice, computerChoice){
+    computerScore++;
+    console.log(`Defeat! ${computerChoice} beats ${humanChoice}`)
+}
 
 function playRound(humanChoice, computerChoice){
     switch (humanChoice){
