@@ -1,15 +1,10 @@
-console.log("Hello World");
-
 // Declaracão de variáveis globais
 let computerChoice = String;
 let humanChoice = String;
 let computerScore = 0;
 let humanScore = 0;
+const result = document.querySelector('#result');
 
-function upperFirst(str){
-    let modStr = str[0].toUpperCase() + str.slice(1);
-    return modStr;
-}
 
 function getComputerChoice(){
     let computerNumber = Math.floor(Math.random() * 3) + 1;
@@ -27,26 +22,30 @@ function getComputerChoice(){
     return computerChoice;
 }
 
-function getHumanChoice(){
-    humanChoice = upperFirst(prompt("Rock, paper or scissors?").toLowerCase());
-    return humanChoice;
-}
-
 function draw(humanChoice){
-    console.log(`Draw! Both chose ${humanChoice}\nPlayer ${humanScore} x ${computerScore} Computer`);
+    // console.log(`Draw! Both chose ${humanChoice}\nPlayer ${humanScore} x ${computerScore} Computer`);
+    let li = document.createElement('li')
+    li.textContent = `Draw! Both chose ${humanChoice}\nPlayer ${humanScore} x ${computerScore} Computer`;
+    result.appendChild(li);
+
 }
 
 function victory(humanChoice, computerChoice){
     humanScore++;
-    console.log(`Victory! ${humanChoice} beats ${computerChoice}\nPlayer ${humanScore} x ${computerScore} Computer`);
+    let li = document.createElement('li')
+    li.textContent = `Victory! ${humanChoice} beats ${computerChoice}\nPlayer ${humanScore} x ${computerScore} Computer`;
+    result.appendChild(li);
 }
 
 function defeat(humanChoice, computerChoice){
     computerScore++;
-    console.log(`Defeat! ${computerChoice} beats ${humanChoice}\nPlayer ${humanScore} x ${computerScore} Computer`);
+    let li = document.createElement('li')
+    li.textContent = `Defeat! ${computerChoice} beats ${humanChoice}\nPlayer ${humanScore} x ${computerScore} Computer`;
+    result.appendChild(li);
 }
 
-function playRound(humanChoice, computerChoice){
+function playRound(humanChoice){
+    computerChoice = getComputerChoice();
     switch (humanChoice){
         case "Rock":
             switch (computerChoice){
@@ -57,10 +56,12 @@ function playRound(humanChoice, computerChoice){
                 case "Paper":
                     // DERROTA
                     defeat(humanChoice, computerChoice);
+                    checkScore();
                     break;
                 case "Scissors":
                     // VITORIA
                     victory(humanChoice, computerChoice);
+                    checkScore();
                     break;
             }
         break;
@@ -69,6 +70,7 @@ function playRound(humanChoice, computerChoice){
                 case "Rock":
                     // VITORIA
                     victory(humanChoice, computerChoice);
+                    checkScore();
                     break;
                 case "Paper":
                     // EMPATE
@@ -77,6 +79,7 @@ function playRound(humanChoice, computerChoice){
                 case "Scissors":
                     // DERROTA
                     defeat(humanChoice, computerChoice);
+                    checkScore();
                     break;
             }
         break;
@@ -85,10 +88,12 @@ function playRound(humanChoice, computerChoice){
                 case "Rock":
                     // DERROTA
                     defeat(humanChoice, computerChoice);
+                    checkScore();
                     break;
                 case "Paper":
                     // VITORIA
                     victory(humanChoice, computerChoice);
+                    checkScore();
                     break;
                 case "Scissors":
                     // EMPATE
@@ -98,23 +103,50 @@ function playRound(humanChoice, computerChoice){
     }
 }
 
-function playGame(){
-    for (let i = 1;  i < 6; i++){
-        getComputerChoice();
-        getHumanChoice();
-        playRound(humanChoice, computerChoice);
-    }
-    if (humanScore > computerScore){
-        console.log(`Game is over! \nPlayer ${humanScore} x ${computerScore} Computer\nYou won the game!`);
-    } else if (humanScore < computerScore){
-        console.log(`Game is over! \nPlayer ${humanScore} x ${computerScore} Computer\nYou lost the game!`);
-    } else {
-        console.log(`Game is over! \nPlayer ${humanScore} x ${computerScore} Computer\nIt's a draw!`)
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper');
+const scissorsBtn = document.querySelector('#scissors');
+
+rockBtn.addEventListener('click', () => { playRound('Rock') }); 
+paperBtn.addEventListener('click', () => { playRound('Paper') }); 
+scissorsBtn.addEventListener('click', () => { playRound('Scissors') }); 
+
+function checkScore(){
+    if (humanScore === 5){
+        let li = document.createElement('li')
+        li.textContent = `Game is over! \nPlayer ${humanScore} x ${computerScore} Computer!\n You won the game!`;
+        result.appendChild(li);
+        endGame();
+    } else if (computerScore === 5){
+        let li = document.createElement('li')
+        li.textContent = `Game is over! \nPlayer ${humanScore} x ${computerScore} Computer!\n You lost the game!`;
+        result.appendChild(li);
+        endGame();
     }
 }
 
-playGame();
+let endGame = function(){
+    humanScore = 0;
+    computerScore = 0;
+    let li = document.createElement('li')
+    li.textContent = 'Starting a new game:'
+    result.appendChild(li)
+}
+// function playGame(){
+//     for (let i = 1;  i < 6; i++){
+//         playRound(humanChoice, computerChoice);
+//     }
+//
+//     if (humanScore > computerScore){
+//         console.log(`Game is over! \nPlayer ${humanScore} x ${computerScore} Computer\nYou won the game!`);
+//     } else if (humanScore < computerScore){
+//         console.log(`Game is over! \nPlayer ${humanScore} x ${computerScore} Computer\nYou lost the game!`);
+//     } else {
+//         console.log(`Game is over! \nPlayer ${humanScore} x ${computerScore} Computer\nIt's a draw!`)
+//     }
+// }
 
+// playGame();
 
 // 1 = Pedra 
 // 2 = Papel

@@ -4,11 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Rock Paper Scissors</title>
+    <script src="myscript.js" defer></script>
+    <style>
+        body {
+            background-color: #667;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+    </style>    
 </head>
 
 <body>
-    
+    <div id="container">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
 
-    <script src="myscript.js"></script>
+    <div id="result"></div>
 </body>
+
 </html>
